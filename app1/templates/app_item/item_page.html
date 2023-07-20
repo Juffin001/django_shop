@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ativo</title>
+    <link rel="stylesheet" href="{% static 'app_item/item_page.css' %}">
+  </head>
+  <body>
+    <h1 class="title_holder">Ativo item</h1>
+    <div class="container">
+        <p class="item_title">{{ item.box_title }}</p>
+        <img class="image_holder" src="{{ item.box_image.url }}" alt="{{item.box_title}}">
+        <p class="item_price">{{ item.box_price }}</p>
+        <p class="item_address">{{ item.box_adress }}</p>
+        <p class="date_pub">Дата публикации - {{ item.box_pub_date }}</p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(177, 203, 237);
+}
+
+.title_holder {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.container {
+    display: flex;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-top: 5vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column
+}
+.image_holder {
+    display: inline-block;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    max-width: 70vw;
+    max-height: 50vh;
+}
+.item_title {
+    font-weight: bold;
+    font-size: 10vw;
+    margin: 0;
+}
+.item_price {
+    font-size: 3vw;
+}
+
+.item_address {
+    font-size: 2vw;
+}
+.date_pub {
+    margin-top: 5vh;
+    font-size: 1.3vw;
+}
