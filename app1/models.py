@@ -20,3 +20,6 @@ class box(models.Model):
     box_price = models.CharField(max_length=50)
     def __str__(self):
         return self.box_title
+class Hotel(models.Model):
+    name = models.CharField(max_length=50)
+    hotel_Main_Img = models.ImageField(upload_to='images/')
