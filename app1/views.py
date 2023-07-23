@@ -7,7 +7,7 @@ from django.utils import timezone
 from .forms import *
 
 def index(request):
-    latest_boxes_list = box.objects.order_by("-box_pub_date")[:5]
+    latest_boxes_list = box.objects.order_by("-box_pub_date")
     # template = loader.get_template("app1/index.html")
     context = {"latest_boxes_list": latest_boxes_list}
     return render(request, "app1/main_page.html", context)
@@ -28,6 +28,7 @@ def results(request, id):
 
 
 def create_item(request):
+    '''
     errors = []
     form = {}
     if request.POST:
@@ -53,7 +54,6 @@ def create_item(request):
             )
             new_box.save()
             return HttpResponse('Спасибо за ваше сообщение!')
-        '''
         if request.method == 'POST':
             form1 = HotelForm(request.POST, request.FILES)
     
@@ -62,16 +62,18 @@ def create_item(request):
         else:
             form1 = HotelForm()
             '''
-    return render(
-        request,
-        "app1/create_item.html",
-        {
-            "errors": errors,
-            "form": form,
-        },
-    )
+    if request.method == 'POST':
+        form = BoxForm(request.POST, request.FILES)
+        if form.is_valid():
+            #form.box_pub_date = timezone.now()
+            form.save()
+            return redirect('index')
+    else:
+        form = BoxForm()
+    return render( request, "app1/create_item.html", {'form' : form})
+
+
 def hotel_image_view(request):
-  
     if request.method == 'POST':
         form = HotelForm(request.POST, request.FILES)
   

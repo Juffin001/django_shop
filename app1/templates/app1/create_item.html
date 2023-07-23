@@ -12,6 +12,14 @@
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
+    <style>
+        div {
+            margin-left: 5vw;
+            margin-right: 5vw;
+            margin-top: 5vh;
+            margin-bottom: 5vh;
+        }
+    </style>
   </head>
   <body>
     <script
@@ -19,14 +27,6 @@
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
       crossorigin="anonymous"
     ></script>
-    <h1>Hello, world!</h1>
-    {% if errors %}
-    <ul>
-      {% for error in errors %}
-      <li style="color: red">{{ error }}</li>
-      {% endfor %}
-    </ul>
-    {% endif %}
     <!--
     <form action="" method="POST">
       <label>Название</label>
@@ -45,10 +45,32 @@
       {% csrf_token %}
     </form>
     -->
-    <form method = "post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Upload</button>
+    <form action = "#" method = "post" enctype="multipart/form-data">
+        <div class="container">
+            <main>
+                <div class="py-5 text-center">
+                    <h2>Ativo creator</h2>
+                    <p class="lead">
+                        Add new item
+                    </p>
+                </div>
+                <div class="row g-5">
+                    <div class="col-md-7 col-lg-8">
+                        <!--<label for="">Name</label>
+                        {{ form.box_title }}
+                        <label for="">price</label>
+                        {{ form.box_price }}
+                        <label for="">address</label>
+                        {{ form.box_adress }}
+                        <label for="">image</label>
+                        {{ form.box_image }}-->
+                        {{ form.as_p }}
+                        {% csrf_token %}
+                        <button action="#" type="submit" class="btn btn-primary">Upload</button>
+                    </div>
+                </div>
+            </main>
+        </div>
     </form>
   </body>
 </html>
