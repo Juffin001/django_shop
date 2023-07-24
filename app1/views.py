@@ -129,4 +129,9 @@ def logout_user(request):
     return redirect('index')
 
 def search_results(request):
-    return render(request, 'app1/search_results.html')
+    if request.method == "POST":
+        searched = request.POST['searched']
+        results = box.objects.filter(box_title__contains=searched)
+        return render(request, 'app1/search_results.html', {'searched': searched, 'results': results})
+    else:
+        return render(request, 'app1/search_results.html', {})

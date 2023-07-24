@@ -23,9 +23,9 @@
     <a href="{% url 'register' %}"><button type="button" class="btn btn-dark">Регистрация</button></a>
     <a href="{% url 'login' %}"><button type="button" class="btn btn-dark">Войти</button></a>
     {% endif %}
-    <form class="d-flex" method="post" action="{% url 'search_results' %}">
+    <form class="d-flex" method="POST" action="{% url 'search_results' %}">
       {% csrf_token %}
-      <input type="search" class="form-control me-2" placeholder="Search" aria-label="Search">
+      <input name='searched' type="search" class="form-control me-2" placeholder="Найти товар" aria-label="Search">
       <button class="btn btn-outline-secondary" type="submit">Найти</button>
     </form>
 
