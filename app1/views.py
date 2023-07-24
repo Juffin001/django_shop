@@ -127,3 +127,6 @@ class LoginUser(DataMixin, LoginView):
 def logout_user(request):
     logout(request)
     return redirect('index')
+
+def search_results(request):
+    return render(request, 'app1/search_results.html')
