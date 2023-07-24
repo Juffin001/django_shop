@@ -54,24 +54,28 @@
                         Add new item
                     </p>
                 </div>
-                <div class="row g-5">
-                    <div class="col-md-7 col-lg-8">
-                        <!--<label for="">Name</label>
-                        {{ form.box_title }}
-                        <label for="">price</label>
-                        {{ form.box_price }}
-                        <label for="">address</label>
-                        {{ form.box_adress }}
-                        <label for="">image</label>
-                        {{ form.box_image }}-->
-                        {% for f in form %}
-                        <p><label class="form-label" for="f.id">{{f.label}}:</label>{{f}}</p>
-                        {% endfor %}
-                        {% csrf_token %}
-                        <button action="#" type="submit" class="btn btn-primary">Upload</button>
-                    </div>
+                <div class="py-5 text-center">
+                  <div class="row g-5">
+                      <div class="col-md-7 col-lg-8">
+                          <!--<label for="">Name</label>
+                          {{ form.box_title }}
+                          <label for="">price</label>
+                          {{ form.box_price }}
+                          <label for="">address</label>
+                          {{ form.box_adress }}
+                          <label for="">image</label>
+                          {{ form.box_image }}-->
+                          {% for f in form %}
+                          <p><label class="form-label" for="f.id">{{f.label}}:</label>{{f}}</p>
+                          {% endfor %}
+                          {% csrf_token %}
+                          <button action="#" type="submit" class="btn btn-primary">Upload</button>
+                      </div>
+                  </div>
                 </div>
             </main>
+            <a href="{% url 'index' %}"><button type="button" class="btn btn-dark"><- отменить</button></a>
+
         </div>
     </form>
   </body>

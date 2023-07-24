@@ -5,12 +5,13 @@ from django.template import loader
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from .forms import *
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .utils import *
 from django.contrib.auth.views import LoginView
+from django.contrib.auth import logout, login
 
 def index(request):
     latest_boxes_list = box.objects.order_by("-box_pub_date")
@@ -106,10 +107,14 @@ class RegisterUser(DataMixin, CreateView):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title="Регистрация")
         return dict(list(context.items()) + list(c_def.items()))
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('index')
     
 
 class LoginUser(DataMixin, LoginView):
-    form_class = AuthenticationForm
+    form_class = LoginUserForm
     template_name = "app1/login.html"
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -118,3 +123,7 @@ class LoginUser(DataMixin, LoginView):
         return dict(list(context.items()) + list(c_def.items()))
     def get_success_url(self):
         return reverse_lazy('index')
+    
+def logout_user(request):
+    logout(request)
+    return redirect('index')

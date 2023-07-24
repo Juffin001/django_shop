@@ -1,7 +1,7 @@
 from django import forms
 from .models import Hotel, box
 from django.utils import timezone
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
 class HotelForm(forms.ModelForm):
@@ -37,3 +37,7 @@ class RegisterUserForm(UserCreationForm):
             'password1': forms.PasswordInput(attrs={'class': 'form-input'}),
             'password2': forms.PasswordInput(attrs={'class': 'form-input'}),
         }
+
+class LoginUserForm(AuthenticationForm):
+    username = forms.CharField(label="Логин", widget=forms.TextInput(attrs={'class': "form-input"}))
+    password = forms.CharField(label="Логин", widget=forms.PasswordInput(attrs={'class': "form-input"}))
