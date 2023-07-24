@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Bootstrap demo</title>
+    <title>Ativo</title>
     {% load static %}
 
     <link
@@ -64,7 +64,9 @@
                         {{ form.box_adress }}
                         <label for="">image</label>
                         {{ form.box_image }}-->
-                        {{ form.as_p }}
+                        {% for f in form %}
+                        <p><label class="form-label" for="f.id">{{f.label}}:</label>{{f}}</p>
+                        {% endfor %}
                         {% csrf_token %}
                         <button action="#" type="submit" class="btn btn-primary">Upload</button>
                     </div>

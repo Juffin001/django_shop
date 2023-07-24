@@ -5,6 +5,12 @@ from django.template import loader
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from .forms import *
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .utils import *
+from django.contrib.auth.views import LoginView
 
 def index(request):
     latest_boxes_list = box.objects.order_by("-box_pub_date")
@@ -87,3 +93,28 @@ def hotel_image_view(request):
   
 def success(request):
     return HttpResponse('successfully uploaded')
+
+def register(request):
+    pass
+
+class RegisterUser(DataMixin, CreateView):
+    form_class = UserCreationForm
+    template_name = 'app1/register.html'
+    success_url = reverse_lazy('login')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Регистрация")
+        return dict(list(context.items()) + list(c_def.items()))
+    
+
+class LoginUser(DataMixin, LoginView):
+    form_class = AuthenticationForm
+    template_name = "app1/login.html"
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Авторизация")
+        return dict(list(context.items()) + list(c_def.items()))
+    def get_success_url(self):
+        return reverse_lazy('index')
